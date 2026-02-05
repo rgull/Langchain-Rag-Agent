@@ -1,4 +1,4 @@
-# # from pprint import pprint
+# # from pprint import pprint       Hi are you there, I am fine
 # # from langchain_groq import ChatGroq
 # # from langchain_core.prompts import ChatPromptTemplate
 # # from langchain.agents import create_agent
@@ -102,14 +102,14 @@
 
 #     print("\n\n")
 
+import asyncio
 from langgraph.types import Command
-
 
 from agents.agent import build_agent
 from middlewares.interrupt_handlers.send_email_interrupt_handler import handle_send_email_interrupt
 
-def main():
-    agent = build_agent()
+async def main():
+    agent = await build_agent()
     while True:
         user_input = input("You: ")
         if user_input.lower() == 'q':
@@ -118,9 +118,9 @@ def main():
         config = {"configurable":{
             "thread_id": "my_thread_id"
         }}
-        response = agent.invoke(inputs,config)
+        response = await agent.ainvoke(inputs, config)
         
-        response = handle_send_email_interrupt(agent, response, config)
+        response = await handle_send_email_interrupt(agent, response, config)
 
         print(response["messages"])
         print("Ai: " + response["messages"][-1].content)
@@ -128,4 +128,4 @@ def main():
     agent.checkpointer.conn.close()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
