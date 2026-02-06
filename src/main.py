@@ -110,22 +110,25 @@ from middlewares.interrupt_handlers.send_email_interrupt_handler import handle_s
 
 async def main():
     agent = await build_agent()
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() == 'q':
-            break
-        inputs = {"messages": [("human", user_input)]}
-        config = {"configurable":{
-            "thread_id": "my_thread_id"
-        }}
-        response = await agent.ainvoke(inputs, config)
-        
-        response = await handle_send_email_interrupt(agent, response, config)
+    try:
+        while True:
+            user_input = input("You: ")
+            if user_input.lower() == 'q':
+                break
+            inputs = {"messages": [("human", user_input)]}
+            config = {"configurable":{
+                "thread_id": "my_thread_id"
+            }}
+            response = await agent.ainvoke(inputs, config)
+            
+            response = await handle_send_email_interrupt(agent, response, config)
 
-        print(response["messages"])
-        print("Ai: " + response["messages"][-1].content)
-
-    agent.checkpointer.conn.close()
+            print(response["messages"])
+            print("Ai: " + response["messages"][-1].content)
+    finally:
+        # Properly close the singleton connection
+        from memory.sqlite_saver import close_sqlite_connection
+        await close_sqlite_connection()
 
 if __name__ == "__main__":
     asyncio.run(main())

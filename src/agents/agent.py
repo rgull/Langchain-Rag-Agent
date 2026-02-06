@@ -18,12 +18,13 @@ from memory.sqlite_saver import get_sqlite_saver
 
 async def build_agent():
     mcp_tools = await get_mcp_tools()
+    checkpointer = await get_sqlite_saver()  # Await the singleton
     
     return create_agent(
         model = get_llm(),
         tools = [send_email_tool, read_email_tool] + mcp_tools,
         system_prompt = SYSTEM_PROMPT,
-        # checkpointer=get_sqlite_saver(),
+        checkpointer=checkpointer,
         middleware=[
             get_summarization_middleware(),
             get_human_in_the_loop_middleware(),
