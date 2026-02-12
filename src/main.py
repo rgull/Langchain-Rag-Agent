@@ -103,10 +103,17 @@
 #     print("\n\n")
 
 import asyncio
-from langgraph.types import Command
+import sys
+from pathlib import Path
+
+# Add project root to path for RAG imports
+BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR))
 
 from agents.agent import build_agent
 from middlewares.interrupt_handlers.send_email_interrupt_handler import handle_send_email_interrupt
+from memory.sqlite_saver import close_sqlite_connection
+from rag.rag_wrapper import rag_enhanced_agent_invoke
 
 async def main():
     agent = await build_agent()
@@ -119,7 +126,9 @@ async def main():
             config = {"configurable":{
                 "thread_id": "my_thread_id"
             }}
-            response = await agent.ainvoke(inputs, config)
+            
+            # Use RAG-enhanced agent invoke (automatically retrieves context)
+            response = await rag_enhanced_agent_invoke(agent, inputs, config)
             
             response = await handle_send_email_interrupt(agent, response, config)
 
@@ -127,7 +136,6 @@ async def main():
             print("Ai: " + response["messages"][-1].content)
     finally:
         # Properly close the singleton connection
-        from memory.sqlite_saver import close_sqlite_connection
         await close_sqlite_connection()
 
 if __name__ == "__main__":

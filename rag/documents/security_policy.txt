@@ -1,0 +1,38 @@
+SECURITY POLICY
+
+We take security seriously and implement industry-standard security measures to protect your data.
+
+Data Protection:
+- All data is encrypted in transit using TLS 1.3
+- Data at rest is encrypted using AES-256 encryption
+- Regular security audits and penetration testing
+- SOC 2 Type II certified
+
+Authentication Security:
+- Multi-factor authentication (MFA) available for all accounts
+- Password requirements: Minimum 12 characters, must include uppercase, lowercase, numbers, and special characters
+- Session timeout after 30 minutes of inactivity
+- Failed login attempt lockout after 5 attempts
+
+Privacy:
+- We never sell your data to third parties
+- Data is stored in secure, compliant data centers
+- GDPR and CCPA compliant
+- Regular privacy policy updates
+
+Incident Response:
+- 24/7 security monitoring
+- Immediate response to security incidents
+- Notification to affected users within 24 hours of discovery
+- Regular security updates and patches
+
+Best Practices for Users:
+- Use strong, unique passwords
+- Enable two-factor authentication
+- Keep your software updated
+- Don't share your API keys
+- Report suspicious activity immediately
+
+For security concerns, contact security@company.com
+
+

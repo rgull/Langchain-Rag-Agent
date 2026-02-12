@@ -5,7 +5,14 @@ from models.llm import get_llm
 
 from tools.weather_tool import weather_tool
 from tools.email_tool import send_email_tool, read_email_tool
-from tools.mcp_tools import get_mcp_tools
+# from tools.mcp_tools import get_mcp_tools
+
+# Import RAG tool
+import sys
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+sys.path.insert(0, str(BASE_DIR))
+from rag.tools.rag_tool import rag_search_tool
 
 # from tools import weather_tool, send_email_tool, read_email_tool, get_mcp_tools
 
@@ -17,12 +24,12 @@ from middlewares.human_in_the_loop_middleware import get_human_in_the_loop_middl
 from memory.sqlite_saver import get_sqlite_saver
 
 async def build_agent():
-    mcp_tools = await get_mcp_tools()
+    # mcp_tools = await get_mcp_tools()
     checkpointer = await get_sqlite_saver()  # Await the singleton
     
     return create_agent(
         model = get_llm(),
-        tools = [send_email_tool, read_email_tool] + mcp_tools,
+        tools = [send_email_tool, read_email_tool, rag_search_tool],
         system_prompt = SYSTEM_PROMPT,
         checkpointer=checkpointer,
         middleware=[

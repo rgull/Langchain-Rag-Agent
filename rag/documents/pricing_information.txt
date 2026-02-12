@@ -1,0 +1,45 @@
+PRICING INFORMATION
+
+We offer flexible pricing plans to suit different needs and budgets.
+
+Pricing Plans:
+
+Basic Plan - $9.99/month
+- 5 projects
+- 10GB storage
+- Email support
+- Basic features
+- Perfect for individuals and small teams
+
+Pro Plan - $29.99/month
+- Unlimited projects
+- 100GB storage
+- Priority email support + Live chat
+- Advanced features
+- API access
+- Best for growing businesses
+
+Enterprise Plan - Custom pricing
+- Unlimited everything
+- Dedicated support manager
+- Custom integrations
+- SLA guarantee
+- On-premise deployment option
+- Contact sales@company.com for pricing
+
+Annual Plans:
+Save 20% when you pay annually! All plans include a 14-day free trial with full access to features.
+
+Add-ons:
+- Extra storage: $5 per 50GB/month
+- Additional API keys: $10 per key/month
+- Premium support: $49/month
+
+Payment Methods:
+We accept all major credit cards, PayPal, and wire transfers for enterprise customers.
+
+Money-back guarantee: 30-day refund policy applies to all plans. See refund policy for details.
+
+For custom pricing or enterprise inquiries, contact sales@company.com
+
+

@@ -15,7 +15,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 class Settings(BaseSettings):
     GROQ_API_KEY: str
-    MODEL_NAME: str     
+    MODEL_NAME: str
+    
+    # RAG Configuration
+    RAG_EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
+    RAG_CHUNK_SIZE: int = 1000
+    RAG_CHUNK_OVERLAP: int = 200
+    RAG_TOP_K: int = 4
+    RAG_VECTOR_STORE_PATH: str = str(BASE_DIR / "rag" / "vector_store" / "faiss_index")
+    
+    # RAG Auto-Retrieve Configuration
+    RAG_AUTO_RETRIEVE: bool = True  # Automatically retrieve context before every query
+    RAG_AUTO_TOP_K: int = 4  # Number of documents to retrieve for auto-RAG
 
     class Config:
         env_file = BASE_DIR / ".env"

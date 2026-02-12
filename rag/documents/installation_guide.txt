@@ -1,0 +1,46 @@
+INSTALLATION GUIDE
+
+Follow these steps to install our software on your system.
+
+Windows Installation:
+1. Download the installer from our website
+2. Run the installer as Administrator
+3. Follow the installation wizard
+4. Choose installation directory (default: C:\Program Files\CompanyApp)
+5. Complete the installation and restart your computer
+6. Launch the application from the Start menu
+
+macOS Installation:
+1. Download the .dmg file from our website
+2. Open the downloaded file
+3. Drag the application to your Applications folder
+4. Open Applications and double-click the app
+5. If you see a security warning, go to System Preferences > Security and allow the app
+
+Linux Installation:
+1. Download the .deb package (for Debian/Ubuntu) or .rpm (for Red Hat/CentOS)
+2. Install using package manager:
+   - Debian/Ubuntu: sudo dpkg -i package.deb
+   - Red Hat/CentOS: sudo rpm -i package.rpm
+3. Launch from terminal or application menu
+
+Docker Installation:
+1. Pull the Docker image: docker pull company/app:latest
+2. Run container: docker run -d -p 8080:8080 company/app:latest
+3. Access at http://localhost:8080
+
+Post-Installation:
+- Activate your license key (found in your account dashboard)
+- Configure initial settings
+- Run the setup wizard
+- Check system requirements are met
+
+Troubleshooting:
+- If installation fails, check system requirements
+- Ensure you have administrator/root privileges
+- Disable antivirus temporarily during installation
+- Contact tech-support@company.com for assistance
+
+For detailed troubleshooting, see our knowledge base.
+
+
