@@ -3,7 +3,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 from models.llm import get_llm
 
-from tools.weather_tool import weather_tool
+from tools.weather_tool import get_weather
 from tools.email_tool import send_email_tool, read_email_tool
 # from tools.mcp_tools import get_mcp_tools
 
@@ -29,12 +29,12 @@ async def build_agent():
     
     return create_agent(
         model = get_llm(),
-        tools = [send_email_tool, read_email_tool, rag_search_tool],
+        tools = [get_weather, send_email_tool, read_email_tool, rag_search_tool],
         system_prompt = SYSTEM_PROMPT,
         checkpointer=checkpointer,
         middleware=[
             get_summarization_middleware(),
-            get_human_in_the_loop_middleware(),
+            # get_human_in_the_loop_middleware(),
         ]
     )
 

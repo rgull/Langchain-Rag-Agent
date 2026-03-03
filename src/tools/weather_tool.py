@@ -1,7 +1,7 @@
 from langchain.tools import tool
 
 @tool 
-def weather_tool(location:str):
+def get_weather(location:str):
     """
     Get the current weather in a given location.
     """
