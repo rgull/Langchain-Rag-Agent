@@ -195,3 +195,22 @@ class FAISSVectorStore:
             return 0
         return self.vector_store.index.ntotal if hasattr(self.vector_store.index, 'ntotal') else 0
 
+    def clear(self, delete_from_disk: bool = True) -> None:
+        """
+        Clear the in-memory vector store. Optionally delete the saved index from disk.
+        After calling this, add_documents() will create a fresh index.
+
+        Args:
+            delete_from_disk: If True, remove the index files from disk so the next
+                load also starts empty. Default True.
+        """
+        self.vector_store = None
+        if delete_from_disk:
+            import shutil
+            path = Path(self.vector_store_path)
+            if path.exists():
+                if path.is_dir():
+                    shutil.rmtree(path)
+                else:
+                    path.unlink(missing_ok=True)
+
