@@ -26,6 +26,7 @@ class ContactForm(BaseModel):
     city: str = Field(description="The city where the business is located")
     country: str = Field(description="The country of operation")
     numberOfStores: str = Field(
+        alias="number_of_stores",  
         description="The total number of store locations (as a string)"
     )
     message: Optional[str] = Field(
