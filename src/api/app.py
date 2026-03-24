@@ -33,7 +33,7 @@ app = FastAPI(lifespan=lifespan)
 # Let Angular (localhost:4200) call this API from the browser
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=["http://localhost:4200","https://ordervez.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -44,4 +44,4 @@ app.include_router(chat_router, prefix="/api")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("src.api.app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("src.api.app:app", host="0.0.0.0", port=8001, reload=True)
