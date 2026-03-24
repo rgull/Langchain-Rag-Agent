@@ -5,7 +5,7 @@ from models.llm import get_llm
 
 from tools.weather_tool import get_weather
 from tools.email_tool import send_email_tool, read_email_tool
-# from tools.mcp_tools import get_mcp_tools
+from tools.contact_form_tool import contact_form_tool
 
 # Import RAG tool
 import sys
@@ -14,13 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(BASE_DIR))
 from rag.tools.rag_tool import rag_search_tool
 
-# from tools import weather_tool, send_email_tool, read_email_tool, get_mcp_tools
-
-
 
 from prompts.system_prompt import SYSTEM_PROMPT
 from middlewares.summarization_middleware import get_summarization_middleware
-from middlewares.human_in_the_loop_middleware import get_human_in_the_loop_middleware
 from memory.sqlite_saver import get_sqlite_saver
 
 async def build_agent():
@@ -29,12 +25,11 @@ async def build_agent():
     
     return create_agent(
         model = get_llm(),
-        tools = [get_weather, send_email_tool, read_email_tool, rag_search_tool],
+        tools = [get_weather, send_email_tool, read_email_tool, rag_search_tool, contact_form_tool],
         system_prompt = SYSTEM_PROMPT,
         checkpointer=checkpointer,
         middleware=[
             get_summarization_middleware(),
-            # get_human_in_the_loop_middleware(),
         ]
     )
 
