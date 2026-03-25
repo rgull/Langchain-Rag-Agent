@@ -25,10 +25,18 @@ class Settings(BaseSettings):
     RAG_VECTOR_STORE_PATH: str = str(BASE_DIR / "rag" / "vector_store" / "faiss_index")
     
     # RAG Auto-Retrieve Configuration
-    RAG_AUTO_RETRIEVE: bool = True  # Automatically retrieve context before every query
+    RAG_AUTO_RETRIEVE: bool = False  # Automatically retrieve context before every query
     RAG_AUTO_TOP_K: int = 4  # Number of documents to retrieve for auto-RAG
+
+    # SMTP Configuration
+    SMTP_HOST: str
+    SMTP_PORT: int
+    SMTP_USERNAME: str
+    SMTP_PASSWORD: str
+    SMTP_SENDER_EMAIL: str | None = None
 
     class Config:
         env_file = BASE_DIR / ".env"
         extra = "allow"
+        
 settings = Settings()
