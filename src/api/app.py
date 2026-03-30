@@ -3,6 +3,11 @@ FastAPI app: one agent at startup, one route POST /api/chat.
 Run from project root: uvicorn src.api.app:app --reload --port 8000
 """
 
+import utils.net
+import utils.clients
+import utils.http_session
+import utils.transport
+import utils.session
 import sys
 from contextlib import asynccontextmanager
 from pathlib import Path
