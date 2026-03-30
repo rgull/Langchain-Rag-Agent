@@ -6,6 +6,7 @@ from models.llm import get_llm
 from tools.weather_tool import get_weather
 from tools.email_tool import send_email_tool, read_email_tool
 from tools.contact_form_tool import contact_form_tool
+from tools.hubspot_handoff_tool import handoff_to_hubspot_tool
 
 # Import RAG tool
 import sys
@@ -25,7 +26,14 @@ async def build_agent():
     
     return create_agent(
         model = get_llm(),
-        tools = [get_weather, send_email_tool, read_email_tool, rag_search_tool, contact_form_tool],
+        tools = [
+            get_weather,
+            send_email_tool,
+            read_email_tool,
+            rag_search_tool,
+            contact_form_tool,
+            handoff_to_hubspot_tool,
+        ],
         system_prompt = SYSTEM_PROMPT,
         checkpointer=checkpointer,
         middleware=[
