@@ -34,6 +34,7 @@ class Settings(BaseSettings):
     SMTP_USERNAME: str
     SMTP_PASSWORD: str
     SMTP_SENDER_EMAIL: str | None = None
+    HUBSPOT_ACCESS_TOKEN: str | None = None
 
     class Config:
         env_file = BASE_DIR / ".env"
